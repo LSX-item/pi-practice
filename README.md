@@ -1,123 +1,87 @@
-# Pi Agent安装与使用
+# Pi Agent 安装与使用
 
-## 任务一 本地安装并启动
+这份记录涵盖我在 Windows 上配置 Pi Agent、接入 DeepSeek、测试代码和图片输入，以及使用插件和 PPT Skill 的过程。截图放在 [`01-Pi-Agent-start/`](./01-Pi-Agent-start/) 下，文件名按任务编号排列。
 
-截图S1：
+## 1. 安装并启动 Pi
 
-在 PowerShell 安装成功截图：
+在 Windows PowerShell 中完成安装，进入练习目录后运行 `pi`。
 
-![在 PowerShell 安装成功截图](pi-agent-images/s1-01.png)
+![S1.1 PowerShell 安装完成](./01-Pi-Agent-start/S1.1.png)
 
-启动pi-agent截图：
+![S1.2 Pi 首次启动](./01-Pi-Agent-start/S1.2.png)
 
-![启动pi-agent截图](pi-agent-images/s1-02.png)
+## 2. 接入 DeepSeek 并测试会话
 
-## 任务二 配置模型并完成一次会话
+在 Pi 中配置 DeepSeek API，选用 `deepseek-v4-pro`，用简单对话确认模型可以回复。
 
-截图S2：
+![S2.1 发送提示词](./01-Pi-Agent-start/S2.1.png)
 
-发出的提示词以及回复截图：
+![S2.2 会话回复](./01-Pi-Agent-start/S2.2.png)
 
-![发出的提示词以及回复截图](pi-agent-images/s2-03.png)
+![S2.3 当前模型信息](./01-Pi-Agent-start/S2.3.png)
 
-![发出的提示词以及回复截图](pi-agent-images/s2-04.png)
+## 3. 切换模型和思考级别
 
-当前模型信息截图：
+用 `/model` 在 `deepseek-v4-pro` 和 `deepseek-flash` 之间切换，并测试 `off` 和 `high` 两种思考级别。
 
-![当前模型信息截图](pi-agent-images/s2-05.png)
+![S3.1 模型选择列表](./01-Pi-Agent-start/S3.1.png)
 
-## 任务三 切换模型与模型思考级别
+![S3.2 选中 DeepSeek V4 Pro](./01-Pi-Agent-start/S3.2.png)
 
-截图S3：
+![S3.3 切换到 DeepSeek Flash](./01-Pi-Agent-start/S3.3.png)
 
-模型切换选择：
+![S3.4 思考级别 off](./01-Pi-Agent-start/S3.4.png)
 
-![模型切换选择](pi-agent-images/s3-06.png)
+![S3.5 思考级别 high](./01-Pi-Agent-start/S3.5.png)
 
-选择deepseek-v4-pro模型：
+## 4. 引用代码和读取图片
 
-![选择deepseek-v4-pro模型](pi-agent-images/s3-07.png)
+### A 引用代码
 
-选择deepseek-flash模型：
+用 `@hello.py` 引用代码，让 Pi 解释函数并确认运行结果为 `5`。
 
-![选择deepseek-flash模型](pi-agent-images/s3-08.png)
+![S4.1-A 引用并解释 hello.py](./01-Pi-Agent-start/S4.1-A.png)
 
-选择思考水平off：
+### B 读取图片
 
-![选择思考水平off](pi-agent-images/s3-09.png)
+切到 `deepseek-flash` 后，在输入框提供图片的本地路径。Pi 读取文件后识别出图中是一颗红苹果。
 
-选择思考水平high：
+![S4.2-B 原始苹果图片](./01-Pi-Agent-start/S4.2-B.png)
 
-![选择思考水平high](pi-agent-images/s3-10.png)
+![S4.3-B DeepSeek Flash 读图结果](./01-Pi-Agent-start/S4.3-B.png)
 
-## 任务四 引用代码并粘贴小图片
+## 5. 安装并试用联网插件
 
-### A 使用 @ 引用代码文件
+运行 `pi install npm:pi-web-access`，重启后用插件查询长沙天气。
 
-截图S4：
+![S5.1 插件安装完成](./01-Pi-Agent-start/S5.1.png)
 
-![截图 S4](pi-agent-images/s4-11.png)
+![S5.2 重启后加载插件](./01-Pi-Agent-start/S5.2.png)
 
-### B 粘贴小图片并测试
+![S5.3 触发天气查询](./01-Pi-Agent-start/S5.3.png)
 
-截图S5：
+![S5.4 天气查询结果](./01-Pi-Agent-start/S5.4.png)
 
-Pi-agent读取的图片：
+## 6. 安装 PPT Skill
 
-![Pi-agent读取的图片](pi-agent-images/s5-12.png)
+让 Pi 将 `pptx` Skill 安装到项目的 `.pi/skills/pptx`，随后检查目录里的 `SKILL.md`、`LICENSE.txt` 和 `scripts`。
 
-![截图 S5](pi-agent-images/s5-13.png)
+![S6.1 向 Pi 提交安装请求](./01-Pi-Agent-start/S6.1.png)
 
-## 任务五 安装并使用一个插件
+![S6.2 终端中的 Skill 目录结构](./01-Pi-Agent-start/S6.2.png)
 
-截图S6：
+![S6.3 资源管理器中的 Skill 文件](./01-Pi-Agent-start/S6.3.png)
 
-安装成功输出：
+## 7. 加载并调用 PPT Skill
 
-![安装成功输出](pi-agent-images/s6-14.png)
+重启 Pi 确认已加载 `pptx`，用 `/skill:pptx` 查看用途，再生成并打开两页演示文稿。
 
-重新运行 pi 后的加载信息：
+![S7.1 启动时发现 pptx Skill](./01-Pi-Agent-start/S7.1.png)
 
-![重新运行 pi 后的加载信息](pi-agent-images/s6-15.png)
+![S7.2 查看 Skill 的用途和目录](./01-Pi-Agent-start/S7.2.png)
 
-插件调用查询天气：
+![S7.3 提交两页 PPT 的生成请求](./01-Pi-Agent-start/S7.3.png)
 
-![插件调用查询天气](pi-agent-images/s6-16.png)
+![S7.4 生成文件和验证结果](./01-Pi-Agent-start/S7.4.png)
 
-![插件调用查询天气](pi-agent-images/s6-17.png)
-
-## 任务六 让 AI 安装一个 PPT Skill
-
-截图S7：
-
-![截图 S7](pi-agent-images/s7-18.png)
-
-终端输出文件结构：
-
-![终端输出文件结构](pi-agent-images/s7-19.png)
-
-本地目录结构：
-
-![本地目录结构](pi-agent-images/s7-20.png)
-
-## 任务七 启动发现与实际调用
-
-截图S8：
-
-重新运行 pi 后的加载信息：
-
-![重新运行 pi 后的加载信息](pi-agent-images/s8-21.png)
-
-/skill:pptx 的调用及回复：
-
-![/skill:pptx 的调用及回复](pi-agent-images/s8-22.png)
-
-生成PPT的示例：
-
-![生成PPT的示例](pi-agent-images/s8-23.png)
-
-![生成PPT的示例](pi-agent-images/s8-24.png)
-
-生成的PPT展示：
-
-![生成的PPT展示](pi-agent-images/s8-25.png)
+![S7.5 生成的两页 PPT](./01-Pi-Agent-start/S7.5.png)
